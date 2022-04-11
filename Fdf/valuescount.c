@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:24:32 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/08 13:51:11 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/11 09:45:12 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	valuescount(char *s)
 {
-/*	int	i;
+	int	i;
 	int	count;
 
 	count = 0;
@@ -27,13 +27,12 @@ int	valuescount(char *s)
 		while(!(s[i] >= 48 && s[i] <= 57 || s[i] == '-') && s[i] != '\0')
 			i++;;
 		count++;
-		i++;
 	}
 
 	return (count);
-*/
 
-	int	i;
+
+/*	int	i;
 	int	count;
 	int	flag;
 
@@ -59,5 +58,5 @@ int	valuescount(char *s)
 	if (flag == 1)
 		count--;
 	return (count);
-
+*/
 }
