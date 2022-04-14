@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 13:28:56 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:46:03 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <mlx.h>
+# include <math.h>
 
 # define BUFFER_SIZE 10
 
@@ -69,6 +70,12 @@ typedef struct coor_kingdm {
 	short	x_ple;
 	short	y_ple;
 }			t_kng;
+
+typedef struct counter {
+	short	a;
+	short	b;
+	short	c;
+}			t_ctr;
 
 char	*ft_strchr(const char *s, int c);
 

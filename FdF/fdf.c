@@ -6,11 +6,11 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 13:51:09 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:14:59 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
 void	my_mlx_pixel_put(t_data *data, short x, short y, int color)
 {
