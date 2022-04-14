@@ -6,7 +6,7 @@
 #    By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 16:01:05 by fde-albe          #+#    #+#              #
-#    Updated: 2022/04/14 16:51:13 by fde-albe         ###   ########.fr        #
+#    Updated: 2022/04/14 16:54:40 by fde-albe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,15 @@ NAME	= fdf
 all:		$(NAME)
 
 objs/%.o: srcs/%.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+			@$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): 	$(OBJS)
-			cc $(OBJS) libft.a -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+			@cc $(OBJS) libft.a -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-			$(RM) $(OBJS)
+			@$(RM) $(OBJS)
 
 fclean:		clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re:			fclean all
