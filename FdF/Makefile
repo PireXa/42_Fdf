@@ -6,26 +6,34 @@
 #    By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 16:01:05 by fde-albe          #+#    #+#              #
-#    Updated: 2022/04/13 16:01:08 by fde-albe         ###   ########.fr        #
+#    Updated: 2022/04/14 16:51:13 by fde-albe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =		fdf.c get_next_line.c get_next_line_utils.c \
-			valuescount.c slope.c bargaksetra.c libft.a \
-			designer.c calc_mesh.c \
+SRCS	= calc_mesh.c connector.c designer.c \
+		  const_calc.c fdf.c get_next_line_utils.c \
+		  get_next_line.c valuescount.c \
 
-CFLAGS =	-Wall -Wextra -Werror
+OBJS	= $(addprefix objs/,$(SRCS:.c=.o))
 
-RM	=		rm -f
+CFLAGS	= -Wall -Wextra -Werror
 
-NAME	=	fdf
+RM		= rm -f
+
+NAME	= fdf
 
 all:		$(NAME)
 
-$(NAME): 	$(SRCS)
-			cc $(SRCS) -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+objs/%.o: srcs/%.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-fclean:		
+$(NAME): 	$(OBJS)
+			cc $(OBJS) libft.a -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+clean:
+			$(RM) $(OBJS)
+
+fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
