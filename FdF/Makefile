@@ -6,11 +6,11 @@
 #    By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 16:01:05 by fde-albe          #+#    #+#              #
-#    Updated: 2022/04/14 16:54:40 by fde-albe         ###   ########.fr        #
+#    Updated: 2022/04/14 18:48:38 by fde-albe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= calc_mesh.c connector.c designer.c \
+SRCS	= controls.c calc_mesh.c connector.c designer.c \
 		  const_calc.c fdf.c get_next_line_utils.c \
 		  get_next_line.c valuescount.c \
 

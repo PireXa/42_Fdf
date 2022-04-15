@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 16:01:12 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/14 18:47:10 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ float	slope(float x1, short y1, short x2, short y2);
 void	designer(t_dim dimen, t_trd **matriz, t_data img);
 
 t_trd	**calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls);
+
+void	controls(t_init_wind g);
 
 #endif

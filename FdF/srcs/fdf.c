@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 16:00:53 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 10:42:34 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ int	main(int ac, char **av)
 	matriz = calc_mesh(dimen, av[1], matriz, pxls);
 	designer(dimen, matriz, g.img);
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
+	controls(g);
 	mlx_loop(g.mlx);
 }

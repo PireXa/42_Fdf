@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 15:28:42 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 10:47:39 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_trd	**pxl_y_corrector(t_dim dimen, short bargak, t_trd **matriz)
 	while (++s < dimen.l)
 	{
 		while (++t < dimen.c)
-			matriz[s][t].y -= nearbyint(matriz[s][t].z * bargak * 1.5 / 10);
+			matriz[s][t].y -= matriz[s][t].z * bargak * 1.5 / 10;
 		t = -1;
 	}
 	return (matriz);
@@ -40,8 +40,8 @@ t_trd	**calc_mesh2(t_dim dimen, short a, t_trd **matriz, t_pxls pxls)
 		matriz[a][b].x = pxls.colx;
 		matriz[a][b].y = pxls.liney;
 		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]);
-		pxls.colx += nearbyint((pxls.bargak * 1.5 / 10));
-		pxls.liney -= nearbyint((pxls.bargak / 10));
+		pxls.colx += pxls.bargak * 1.5 / 10;
+		pxls.liney -= pxls.bargak / 10;
 	}
 	return (matriz);
 }
@@ -60,8 +60,8 @@ t_trd	**calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
 	{
 		pxls.map = get_next_line(fd);
 		calc_mesh2(dimen, a, matriz, pxls);
-		pxls.holdx -= nearbyint((pxls.bargak * 1.5 / 10));
-		pxls.holdy -= nearbyint((pxls.bargak / 10));
+		pxls.holdx -= pxls.bargak * 1.5 / 10;
+		pxls.holdy -= pxls.bargak / 10;
 		pxls.colx = pxls.holdx;
 		pxls.liney = pxls.holdy;
 		b = -1;
