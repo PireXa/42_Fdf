@@ -6,13 +6,13 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/15 10:42:34 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:17:44 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, short x, short y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, short x, short y, int color)
 	*(unsigned int *)dst = color;
 }
 
-float	slope(float x1, short y1, short x2, short y2)
+float	slope(float x1, int y1, int x2, int y2)
 {
 	float	ret;
 
@@ -62,25 +62,29 @@ t_dim	dim_definer(char *map)
 
 int	main(int ac, char **av)
 {
-	t_dim		dimen;
-	short		a;
-	t_trd		**matriz;
-	t_pxls		pxls;
+//	t_dim		dimen;
+	int		a;
+//	t_trd		**matriz;
+//	t_pxls		pxls;
 	t_init_wind	g;
 
-	pxls.map = av[1];
+	g.pxls.map = av[1];
 	a = -1;
 	if (ac != 2)
 		return (0);
-	dimen = dim_definer(av[1]);
 	g = grf_initializer();
-	matriz = malloc(sizeof(t_trd *) * dimen.l);
-	while (++a < dimen.l)
-		matriz[a] = malloc(sizeof(t_trd) * dimen.c + 1);
-	pxls = const_calc(dimen.c, dimen.l, pxls);
-	matriz = calc_mesh(dimen, av[1], matriz, pxls);
-	designer(dimen, matriz, g.img);
+	g.pxls.map = av[1];
+	g.dimen = dim_definer(av[1]);
+	g.matriz = malloc(sizeof(t_trd *) * g.dimen.l);
+	while (++a < g.dimen.l)
+		g.matriz[a] = malloc(sizeof(t_trd) * g.dimen.c + 1);
+	g.pxls.x_off = 0;
+	g.pxls.y_off = 0;
+	g.pxls = const_calc(g.dimen.c, g.dimen.l, g.pxls);
+	calc_mesh(g.dimen, av[1], g.matriz, g.pxls);
+	designer(g.dimen, g.matriz, g.img);
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
 	controls(g);
 	mlx_loop(g.mlx);
+	free(g.matriz);
 }

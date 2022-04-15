@@ -6,13 +6,13 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/15 10:47:39 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:24:03 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_trd	**pxl_y_corrector(t_dim dimen, short bargak, t_trd **matriz)
+void	pxl_y_corrector(t_dim dimen, int bargak, t_trd **matriz)
 {
 	int	s;
 	int	t;
@@ -25,10 +25,9 @@ t_trd	**pxl_y_corrector(t_dim dimen, short bargak, t_trd **matriz)
 			matriz[s][t].y -= matriz[s][t].z * bargak * 1.5 / 10;
 		t = -1;
 	}
-	return (matriz);
 }
 
-t_trd	**calc_mesh2(t_dim dimen, short a, t_trd **matriz, t_pxls pxls)
+void	calc_mesh2(t_dim dimen, int a, t_trd **matriz, t_pxls pxls)
 {
 	int		b;
 	char	**hold;
@@ -43,14 +42,13 @@ t_trd	**calc_mesh2(t_dim dimen, short a, t_trd **matriz, t_pxls pxls)
 		pxls.colx += pxls.bargak * 1.5 / 10;
 		pxls.liney -= pxls.bargak / 10;
 	}
-	return (matriz);
 }
 
-t_trd	**calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
+void	calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
 {
 	int		b;
 	int		fd;
-	short	a;
+	int	a;
 
 	a = dimen.l;
 	pxls.map = map;
@@ -66,6 +64,5 @@ t_trd	**calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
 		pxls.liney = pxls.holdy;
 		b = -1;
 	}
-	matriz = pxl_y_corrector(dimen, pxls.bargak, matriz);
-	return (matriz);
+	pxl_y_corrector(dimen, pxls.bargak, matriz);
 }

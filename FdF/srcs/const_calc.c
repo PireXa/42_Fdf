@@ -6,40 +6,40 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:38 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/14 16:37:12 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:57:43 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-short	ft_abs(short n)
+int	ft_abs(int n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-t_pxls	calc_start_pxls(t_pxls pxls, short h)
+t_pxls	calc_start_pxls(t_pxls pxls, int h)
 {
-	pxls.colx = WIND_W / 2;
-	pxls.liney = WIND_H - 80;
+	pxls.colx = WIND_W / 2 + pxls.x_off;
+	pxls.liney = WIND_H - 500 + pxls.y_off;
 	pxls.holdx = pxls.colx;
 	pxls.holdy = pxls.liney;
-	if (h > 20)
+	if (h > 10)
 	{
 		pxls.bargak = 50;
-		pxls.colx = WIND_W / 2;
-		pxls.liney = WIND_H / 2;
+		pxls.colx = WIND_W / 2 + pxls.x_off;
+		pxls.liney = WIND_H / 2 + pxls.y_off;
 		pxls.holdx = pxls.colx;
 		pxls.holdy = pxls.liney;
 	}
 	return (pxls);
 }
 
-short	calc_max_height(short columns, char *map)
+int	calc_max_height(int columns, char *map)
 {
 	t_ctr	cnt;
-	short	fd;
+	int	fd;
 	char	**hold;
 	char	*line;
 
@@ -65,9 +65,9 @@ short	calc_max_height(short columns, char *map)
 	return (cnt.b);
 }
 
-t_pxls	const_calc(short columns, short lines, t_pxls pxls)
+t_pxls	const_calc(int columns, int lines, t_pxls pxls)
 {
-	short	h;
+	int	h;
 
 	h = 0;
 	pxls.bargak = 0;

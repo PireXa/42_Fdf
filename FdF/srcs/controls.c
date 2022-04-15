@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:27:54 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/15 11:31:04 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/15 17:16:56 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,64 @@ int	closex(void *param)
 	exit(0);
 }
 
-int	user_hook(int a, t_init_wind *g)
+int	user_hook(int a, void *param)
 {
+	t_init_wind *g;
+
+	g = (t_init_wind *)param;
 	if (a == 53)
 	{
 		mlx_destroy_window(g->mlx, g->mlx_win);
 		exit(0);
 	}
-/*
-	else if (a == 123)
+	if (a == 123)
 	{
-		matriz = calc_mesh(dimen, av[1], matriz, pxls);
-		designer(dimen, matriz, g.img);
-		mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
-	}*/
+		ft_bzero(g->img.addr, WIND_H * WIND_W * (g->img.p / 8));
+		g->pxls.x_off -= 10;
+		g->pxls = const_calc(g->dimen.c, g->dimen.l, g->pxls);
+		g->pxls.colx -= 10;
+		g->pxls.holdx = g->pxls.colx;
+		calc_mesh(g->dimen, g->pxls.map, g->matriz, g->pxls);
+		designer(g->dimen, g->matriz, g->img);
+		mlx_put_image_to_window(g->mlx, g->mlx_win, g->img.img, 0, 0);
+	}
+	else if (a == 124)
+	{
+		ft_bzero(g->img.addr, WIND_H * WIND_W * (g->img.p / 8));
+		g->pxls.x_off += 10;
+		g->pxls = const_calc(g->dimen.c, g->dimen.l, g->pxls);
+		g->pxls.colx += 10;
+		g->pxls.holdx = g->pxls.colx;
+		calc_mesh(g->dimen, g->pxls.map, g->matriz, g->pxls);
+		designer(g->dimen, g->matriz, g->img);
+		mlx_put_image_to_window(g->mlx, g->mlx_win, g->img.img, 0, 0);
+	}
+	else if (a == 125)
+	{
+		ft_bzero(g->img.addr, WIND_H * WIND_W * (g->img.p / 8));
+		g->pxls.y_off += 10;
+		g->pxls = const_calc(g->dimen.c, g->dimen.l, g->pxls);
+		calc_mesh(g->dimen, g->pxls.map, g->matriz, g->pxls);
+		designer(g->dimen, g->matriz, g->img);
+		mlx_put_image_to_window(g->mlx, g->mlx_win, g->img.img, 0, 0);
+	}
+	else if (a == 126)
+	{
+		ft_bzero(g->img.addr, WIND_H * WIND_W * (g->img.p / 8));
+		g->pxls.y_off -= 10;
+		g->pxls = const_calc(g->dimen.c, g->dimen.l, g->pxls);
+		g->pxls.liney -= 10;
+		g->pxls.holdy = g->pxls.liney;
+		calc_mesh(g->dimen, g->pxls.map, g->matriz, g->pxls);
+		designer(g->dimen, g->matriz, g->img);
+		mlx_put_image_to_window(g->mlx, g->mlx_win, g->img.img, 0, 0);
+	}
 	return (0);
 }
 
 void	controls(t_init_wind g)
 {
-	mlx_hook(g.mlx_win, 2, 1L << 0, user_hook, &g);
+	mlx_hook(g.mlx_win, 2, 0, user_hook, &g);
+	mlx_hook(g.mlx_win, 3, 0, user_hook, &g);
 	mlx_hook(g.mlx_win, 17, 0, closex, &g);
 }
