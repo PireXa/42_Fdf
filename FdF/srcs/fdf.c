@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/15 16:17:44 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/18 10:14:36 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->lgt + x * (data->p / 8));
-	*(unsigned int *)dst = color;
+	if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
+	{
+		dst = data->addr + (y * data->lgt + x * (data->p / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 float	slope(float x1, int y1, int x2, int y2)
@@ -62,10 +65,7 @@ t_dim	dim_definer(char *map)
 
 int	main(int ac, char **av)
 {
-//	t_dim		dimen;
 	int		a;
-//	t_trd		**matriz;
-//	t_pxls		pxls;
 	t_init_wind	g;
 
 	g.pxls.map = av[1];
@@ -76,6 +76,8 @@ int	main(int ac, char **av)
 	g.pxls.map = av[1];
 	g.dimen = dim_definer(av[1]);
 	g.matriz = malloc(sizeof(t_trd *) * g.dimen.l);
+	if (!g.matriz)
+		return (0);
 	while (++a < g.dimen.l)
 		g.matriz[a] = malloc(sizeof(t_trd) * g.dimen.c + 1);
 	g.pxls.x_off = 0;

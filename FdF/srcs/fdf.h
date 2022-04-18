@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/15 17:11:56 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/18 10:37:19 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct dimensions {
 }			t_dim;
 
 typedef struct pix_coordinates {
-	short	colx;
-	short	liney;
-	short	holdx;
-	short	holdy;
+	int	colx;
+	int	liney;
+	int	holdx;
+	int	holdy;
 	int		x_off;
 	int		y_off;
 	int		bargak;
@@ -87,6 +87,7 @@ typedef struct counter {
 	int	a;
 	int	b;
 	int	c;
+	int	d;
 }			t_ctr;
 
 char	*ft_strchr(const char *s, int c);
