@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/18 10:14:36 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:42:39 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_dim	dim_definer(char *map)
 
 int	main(int ac, char **av)
 {
-	int		a;
+	int			a;
 	t_init_wind	g;
 
 	g.pxls.map = av[1];
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 		return (0);
 	g = grf_initializer();
 	g.pxls.map = av[1];
-	g.dimen = dim_definer(av[1]);
+	g.dimen = dim_definer(g.pxls.map);
 	g.matriz = malloc(sizeof(t_trd *) * g.dimen.l);
 	if (!g.matriz)
 		return (0);
@@ -83,7 +83,8 @@ int	main(int ac, char **av)
 	g.pxls.x_off = 0;
 	g.pxls.y_off = 0;
 	g.pxls = const_calc(g.dimen.c, g.dimen.l, g.pxls);
-	calc_mesh(g.dimen, av[1], g.matriz, g.pxls);
+	calc_mesh(g.dimen, g.matriz, g.pxls);
+	g.img.clr = 0x00FF00FF;
 	designer(g.dimen, g.matriz, g.img);
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
 	controls(g);

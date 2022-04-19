@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 15:44:59 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/19 15:42:00 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/19 16:22:44 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
-
-int	valuescount(char *s)
+int	ft_isspace(int c)
 {
-	int	i;
-	int	count;
-
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (s[i - 2] != ' ' && s[i - 1] == '\n')
-		count--;
-	return (count);
+	if (c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r' || c == ' ')
+		return (1);
+	return (0);
 }

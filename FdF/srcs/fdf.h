@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/18 10:37:19 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:50:50 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <math.h>
+# include <ctype.h>
 
 # define BUFFER_SIZE 10
 # define WIND_H 1080
@@ -31,63 +32,60 @@ typedef struct s_data {
 	int		p;
 	int		lgt;
 	int		e;
+	int		clr;
 }			t_data;
 
 typedef struct coordinates {
-	int	x;
-	int	y;
-	int	z;
+	int		x;
+	int		y;
+	int		z;
 }			t_trd;
 
 typedef struct dimensions {
-	int	l;
-	int	c;
+	int		l;
+	int		c;
 }			t_dim;
 
 typedef struct pix_coordinates {
-	int	colx;
-	int	liney;
-	int	holdx;
-	int	holdy;
+	int		colx;
+	int		liney;
+	int		holdx;
+	int		holdy;
 	int		x_off;
 	int		y_off;
 	int		bargak;
 	char	*map;
 }			t_pxls;
 
-
+typedef struct draw_coor {
+	float	x1;
+	int		y1;
+	int		x2;
+	int		y2;
+	int		a;
+}			t_drw;
 
 typedef struct image {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
-	t_dim       dimen;
-	t_trd       **matriz;
-	t_pxls      pxls;
+	t_dim	dimen;
+	t_trd	**matriz;
+	t_pxls	pxls;
 }			t_init_wind;
-
-
-
-typedef struct draw_coor {
-	float	x1;
-	int	y1;
-	int	x2;
-	int	y2;
-	int	a;
-}			t_drw;
 
 typedef struct coor_kingdm {
 	float	s_rei;
 	float	s_plebeu;
-	int	x_ple;
-	int	y_ple;
+	int		x_ple;
+	int		y_ple;
 }			t_kng;
 
 typedef struct counter {
-	int	a;
-	int	b;
-	int	c;
-	int	d;
+	int		a;
+	int		b;
+	int		c;
+	int		d;
 }			t_ctr;
 
 char	*ft_strchr(const char *s, int c);
@@ -108,9 +106,9 @@ size_t	ft_strlcpy(char *dst, char *src, size_t size);
 
 int		valuescount(char *s);
 
-void    ft_bzero(void *s, size_t len);
+void	ft_bzero(void *s, size_t len);
 
-void    *ft_memset(void *dest, int val, size_t len);
+void	*ft_memset(void *dest, int val, size_t len);
 
 int		ft_atoi(const char *str);
 
@@ -128,8 +126,14 @@ float	slope(float x1, int y1, int x2, int y2);
 
 void	designer(t_dim dimen, t_trd **matriz, t_data img);
 
-void	calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls);
+void	calc_mesh(t_dim diment, t_trd **matriz, t_pxls pxls);
 
 void	controls(t_init_wind g);
+
+int		ft_isspace(int c);
+
+void	move_model(int key, t_init_wind *g);
+
+void	color_change(int key, t_init_wind *g);
 
 #endif

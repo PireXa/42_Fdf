@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/18 10:14:17 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:23:34 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,24 @@ void	calc_mesh2(t_dim dimen, int a, t_trd **matriz, t_pxls pxls)
 
 	b = -1;
 	hold = ft_split(pxls.map, 32);
-	while (++b < dimen.c)
+	while (++b < dimen.c && hold[b] != NULL)
 	{
 		matriz[a][b].x = pxls.colx;
 		matriz[a][b].y = pxls.liney;
-//		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]);
+		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]);
 		pxls.colx += pxls.bargak * 1.5 / 10;
 		pxls.liney -= pxls.bargak / 10;
 	}
 	free (hold);
 }
 
-void	calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
+void	calc_mesh(t_dim dimen, t_trd **matriz, t_pxls pxls)
 {
 	int		b;
 	int		fd;
-	int	a;
+	int		a;
 
 	a = dimen.l;
-	pxls.map = map;
 	b = -1;
 	fd = open(pxls.map, O_RDWR);
 	while (--a >= 0)
@@ -65,5 +64,6 @@ void	calc_mesh(t_dim dimen, char *map, t_trd **matriz, t_pxls pxls)
 		pxls.liney = pxls.holdy;
 		b = -1;
 	}
-//	pxl_y_corrector(dimen, pxls.bargak, matriz);
+	pxl_y_corrector(dimen, pxls.bargak, matriz);
+	close (fd);
 }
