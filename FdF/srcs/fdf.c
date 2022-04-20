@@ -6,12 +6,12 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 16:42:39 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:59:23 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -21,6 +21,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		dst = data->addr + (y * data->lgt + x * (data->p / 8));
 		*(unsigned int *)dst = color;
 	}
+}
+*/
+
+t_off	offset_init(t_off off)
+{
+	off.zoom = 1;
+	off.x_off = 0;
+	off.y_off = 0;
+	off.z_off = 1;
+	return (off);
 }
 
 float	slope(float x1, int y1, int x2, int y2)
@@ -68,7 +78,6 @@ int	main(int ac, char **av)
 	int			a;
 	t_init_wind	g;
 
-	g.pxls.map = av[1];
 	a = -1;
 	if (ac != 2)
 		return (0);
@@ -80,8 +89,10 @@ int	main(int ac, char **av)
 		return (0);
 	while (++a < g.dimen.l)
 		g.matriz[a] = malloc(sizeof(t_trd) * g.dimen.c + 1);
-	g.pxls.x_off = 0;
-	g.pxls.y_off = 0;
+//	g.pxls.zoom = 1;
+//	g.pxls.x_off = 0;
+//	g.pxls.y_off = 0;
+	g.pxls.off = offset_init(g.pxls.off);
 	g.pxls = const_calc(g.dimen.c, g.dimen.l, g.pxls);
 	calc_mesh(g.dimen, g.matriz, g.pxls);
 	g.img.clr = 0x00FF00FF;

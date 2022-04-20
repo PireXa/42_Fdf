@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:24:06 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 16:51:28 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:59:45 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,42 @@ void	color_change(int key, t_init_wind *g)
 	}
 }
 
+void	zoom(int key, t_init_wind *g)
+{
+	reset_img(g);
+	if (key == 6)
+	{
+		g->pxls.off.zoom *= 1.3;
+		draw_model(g);
+	}
+	else if (key == 7)
+	{
+		g->pxls.off.zoom /= 1.3;
+		draw_model(g);
+	}
+}
+
 void	move_model(int key, t_init_wind *g)
 {
 	reset_img(g);
 	if (key == 123)
 	{
-		g->pxls.x_off -= 10;
+		g->pxls.off.x_off -= 10;
 		draw_model(g);
 	}
 	else if (key == 124)
 	{
-		g->pxls.x_off += 10;
+		g->pxls.off.x_off += 10;
 		draw_model(g);
 	}
 	else if (key == 125)
 	{
-		g->pxls.y_off += 10;
+		g->pxls.off.y_off += 10;
 		draw_model(g);
 	}
 	else if (key == 126)
 	{
-		g->pxls.y_off -= 10;
+		g->pxls.off.y_off -= 10;
 		draw_model(g);
 	}
 }

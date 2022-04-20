@@ -6,11 +6,22 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:05:30 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 15:31:20 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:51:36 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
+	{
+		dst = data->addr + (y * data->lgt + x * (data->p / 8));
+		*(unsigned int *)dst = color;
+	}
+}
 
 void	upper_davinci(t_kng xy, t_drw crd, t_data img)
 {

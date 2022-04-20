@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:38 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 16:18:02 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:06:46 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ int	ft_abs(int n)
 
 t_pxls	calc_start_pxls(t_pxls pxls, int h)
 {
-	pxls.colx = (WIND_W / 2) + pxls.x_off;
-	pxls.liney = (WIND_H - 80) + pxls.y_off;
+	pxls.colx = (WIND_W / 2) + pxls.off.x_off;
+	pxls.liney = (WIND_H - 80) + pxls.off.y_off;
 	pxls.holdx = pxls.colx;
 	pxls.holdy = pxls.liney;
+//	printf("h = %d\n", h);
 	if (h > 20)
 	{
 		pxls.bargak = 100;
-		if (h > 40)
+		if (h >=  100)
+			pxls.bargak = 15;
+		else if (h > 40)
 			pxls.bargak = 20;
-		else if (h >= 100)
-			pxls.bargak = 1;
 	}
 	return (pxls);
 }
@@ -66,7 +67,7 @@ int	calc_max_height(char *map)
 	while (line)
 	{
 		hold = ft_split(line, 32);
-		height_extra(cnt, hold);
+		cnt = height_extra(cnt, hold);
 		free (hold);
 		line = get_next_line(fd);
 	}
@@ -98,5 +99,8 @@ t_pxls	const_calc(int columns, int lines, t_pxls pxls)
 	else
 		pxls.bargak = 20;
 	pxls = calc_start_pxls(pxls, h);
+	pxls.bargak *= pxls.off.zoom;
+//	printf("zoom = %.2f\n", pxls.zoom);
+//	printf("bargak = %d\n", pxls.bargak);
 	return (pxls);
 }

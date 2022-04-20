@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 16:23:34 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:54:34 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	calc_mesh2(t_dim dimen, int a, t_trd **matriz, t_pxls pxls)
 	{
 		matriz[a][b].x = pxls.colx;
 		matriz[a][b].y = pxls.liney;
-		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]);
+		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]) * pxls.off.z_off;
 		pxls.colx += pxls.bargak * 1.5 / 10;
 		pxls.liney -= pxls.bargak / 10;
 	}

@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 16:50:50 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:07:23 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,25 @@ typedef struct dimensions {
 	int		c;
 }			t_dim;
 
+typedef struct init_off {
+	int     x_off;
+	int     y_off;
+	int     z_off;
+	float	zoom;
+}			t_off;
+
 typedef struct pix_coordinates {
 	int		colx;
 	int		liney;
 	int		holdx;
 	int		holdy;
-	int		x_off;
-	int		y_off;
+//	int		x_off;
+//	int		y_off;
+//	int		z_off;
 	int		bargak;
 	char	*map;
+//	float		zoom;
+	t_off	off;
 }			t_pxls;
 
 typedef struct draw_coor {
@@ -135,5 +145,13 @@ int		ft_isspace(int c);
 void	move_model(int key, t_init_wind *g);
 
 void	color_change(int key, t_init_wind *g);
+
+void    zoom(int key, t_init_wind *g);
+
+void	reset_img(t_init_wind *g);
+
+void    draw_model(t_init_wind *g);
+
+void    increase_z(int key, t_init_wind *g);
 
 #endif
