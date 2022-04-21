@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/20 16:07:23 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:17:17 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct coordinates {
 	int		x;
 	int		y;
 	int		z;
+	int		clr;
 }			t_trd;
 
 typedef struct dimensions {
@@ -47,10 +48,10 @@ typedef struct dimensions {
 }			t_dim;
 
 typedef struct init_off {
-	int     x_off;
-	int     y_off;
-	int     z_off;
-	float	zoom;
+	int		x_off;
+	int		y_off;
+	int		z_off;
+	int		zoom;
 }			t_off;
 
 typedef struct pix_coordinates {
@@ -58,12 +59,8 @@ typedef struct pix_coordinates {
 	int		liney;
 	int		holdx;
 	int		holdy;
-//	int		x_off;
-//	int		y_off;
-//	int		z_off;
 	int		bargak;
 	char	*map;
-//	float		zoom;
 	t_off	off;
 }			t_pxls;
 
@@ -144,14 +141,18 @@ int		ft_isspace(int c);
 
 void	move_model(int key, t_init_wind *g);
 
-void	color_change(int key, t_init_wind *g);
-
-void    zoom(int key, t_init_wind *g);
+void	zoom(int key, t_init_wind *g);
 
 void	reset_img(t_init_wind *g);
 
-void    draw_model(t_init_wind *g);
+void	draw_model(t_init_wind *g);
 
-void    increase_z(int key, t_init_wind *g);
+void	increase_z(int key, t_init_wind *g);
+
+int		color_reader(char *s);
+
+int		ft_isdigit(int c);
+
+void	up_designer(t_init_wind *g);
 
 #endif

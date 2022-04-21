@@ -6,11 +6,18 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:41:37 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/19 15:31:50 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/21 13:11:56 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	color_cmp(int a, int b)
+{
+	if (a == b && a != -1)
+		return (1);
+	return (0);
+}
 
 void	dsg_lines(t_dim dimen, t_trd **m, t_data img, t_drw drw)
 {
@@ -23,6 +30,10 @@ void	dsg_lines(t_dim dimen, t_trd **m, t_data img, t_drw drw)
 		drw.y1 = m[drw.a][b].y;
 		drw.x2 = m[drw.a][b + 1].x;
 		drw.y2 = m[drw.a][b + 1].y;
+		if (color_cmp(m[drw.a][b].clr, m[drw.a][b + 1].clr))
+			img.clr = m[drw.a][b].clr;
+		else
+			img.clr = 0xFF00FF;
 		connector(drw, img);
 	}
 }
@@ -38,6 +49,10 @@ void	dsg_columns(t_dim dimen, t_trd **m, t_data img, t_drw drw)
 		drw.y1 = m[drw.a][b].y;
 		drw.x2 = m[drw.a + 1][b].x;
 		drw.y2 = m[drw.a + 1][b].y;
+		if (color_cmp(m[drw.a][b].clr, m[drw.a + 1][b].clr))
+			img.clr = m[drw.a][b].clr;
+		else
+			img.clr = 0xFF00FF;
 		connector(drw, img);
 	}
 }

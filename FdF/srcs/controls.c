@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:27:54 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/20 16:03:22 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/21 12:54:43 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	closex(void *param)
 
 int	user_hook(int a, void *param)
 {
-	t_init_wind *g;
+	t_init_wind	*g;
 
 	g = (t_init_wind *)param;
 	if (a == 53)
@@ -34,14 +34,13 @@ int	user_hook(int a, void *param)
 		zoom(a, g);
 	else if (a == 34 || a == 37)
 		increase_z(a, g);
-	else if (a == 11)
-		color_change(a, g);
+	else if (a == 32)
+		up_designer(g);
 	return (0);
 }
 
 void	controls(t_init_wind g)
 {
 	mlx_hook(g.mlx_win, 2, 0, user_hook, &g);
-//	mlx_hook(g.mlx_win, 3, 0, user_hook, &g);
 	mlx_hook(g.mlx_win, 17, 0, closex, &g);
 }

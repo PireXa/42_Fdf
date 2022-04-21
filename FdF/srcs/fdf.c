@@ -6,27 +6,15 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/20 15:59:23 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:33:44 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-/*
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
-	{
-		dst = data->addr + (y * data->lgt + x * (data->p / 8));
-		*(unsigned int *)dst = color;
-	}
-}
-*/
 
 t_off	offset_init(t_off off)
 {
-	off.zoom = 1;
+	off.zoom = 0;
 	off.x_off = 0;
 	off.y_off = 0;
 	off.z_off = 1;
@@ -89,13 +77,9 @@ int	main(int ac, char **av)
 		return (0);
 	while (++a < g.dimen.l)
 		g.matriz[a] = malloc(sizeof(t_trd) * g.dimen.c + 1);
-//	g.pxls.zoom = 1;
-//	g.pxls.x_off = 0;
-//	g.pxls.y_off = 0;
 	g.pxls.off = offset_init(g.pxls.off);
 	g.pxls = const_calc(g.dimen.c, g.dimen.l, g.pxls);
 	calc_mesh(g.dimen, g.matriz, g.pxls);
-	g.img.clr = 0x00FF00FF;
 	designer(g.dimen, g.matriz, g.img);
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
 	controls(g);

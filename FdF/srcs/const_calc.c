@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:38 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/20 16:06:46 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:33:48 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@ t_pxls	calc_start_pxls(t_pxls pxls, int h)
 	pxls.liney = (WIND_H - 80) + pxls.off.y_off;
 	pxls.holdx = pxls.colx;
 	pxls.holdy = pxls.liney;
-//	printf("h = %d\n", h);
-	if (h > 20)
-	{
-		pxls.bargak = 100;
-		if (h >=  100)
-			pxls.bargak = 15;
-		else if (h > 40)
-			pxls.bargak = 20;
-	}
+	if(h >= 100)
+		pxls.bargak = 2;
+	else if (h >= 40)
+		pxls.bargak = 3;
 	return (pxls);
 }
 
@@ -87,20 +82,18 @@ t_pxls	const_calc(int columns, int lines, t_pxls pxls)
 	else
 		pxls.bargak = lines;
 	if (pxls.bargak <= 15)
-		pxls.bargak = 320;
+		pxls.bargak = 30;
 	else if (pxls.bargak <= 30)
-		pxls.bargak = 200;
-	else if (pxls.bargak <= 45)
-		pxls.bargak = 100;
-	else if (pxls.bargak <= 60)
-		pxls.bargak = 60;
-	else if (pxls.bargak <= 100)
-		pxls.bargak = 40;
-	else
 		pxls.bargak = 20;
+	else if (pxls.bargak <= 45)
+		pxls.bargak = 10;
+	else if (pxls.bargak <= 60)
+		pxls.bargak = 6;
+	else if (pxls.bargak <= 100)
+		pxls.bargak = 3;
+	else
+		pxls.bargak = 2;
 	pxls = calc_start_pxls(pxls, h);
-	pxls.bargak *= pxls.off.zoom;
-//	printf("zoom = %.2f\n", pxls.zoom);
-//	printf("bargak = %d\n", pxls.bargak);
+	pxls.bargak += pxls.off.zoom;
 	return (pxls);
 }
