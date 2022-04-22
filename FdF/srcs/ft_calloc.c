@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/22 16:34:19 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 16:46:09 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-int	valuescount(char *s)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	int	i;
-	int	count;
+	void	*ptr;
 
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	ptr = (void *)malloc(nitems * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nitems * size);
+	return (ptr);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/22 16:29:12 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 16:45:00 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-int	valuescount(char *s)
+void	*ft_memset(void *dest, int val, size_t len)
 {
-	int	i;
-	int	count;
+	unsigned char	*ptr;
 
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	ptr = dest;
+	while (len-- > 0)
+		*ptr++ = val;
+	return (dest);
 }

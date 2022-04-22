@@ -6,22 +6,11 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 13:02:14 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:24:01 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	ft_error(int check)
-{
-	if (check == -1)
-	{
-		ft_printf("MAP INVALID\n");
-		ft_printf("Map has lines with different amount of columns\n");
-		return (1);
-	}
-	return (0);
-}
 
 t_dim	dim_definer(char *map)
 {
@@ -57,13 +46,11 @@ int	main(int ac, char **av)
 	t_fdf	g;
 
 	a = -1;
-	if (ac != 2)
+	if (ft_error(g.dimen.c) || error_check(ac, av[1]))
 		return (0);
 	g = grf_initializer();
 	g.pxls.map = av[1];
 	g.dimen = dim_definer(g.pxls.map);
-	if (ft_error(g.dimen.c))
-		return (0);
 	g.matriz = malloc(sizeof(t_trd *) * g.dimen.l);
 	if (!g.matriz)
 		return (0);

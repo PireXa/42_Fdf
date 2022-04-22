@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/03/07 15:06:59 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/03/07 15:07:10 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include"ft_printf.h"
 
-int	valuescount(char *s)
+void	ft_putunsigned(t_print *tab)
 {
-	int	i;
-	int	count;
+	unsigned int	temp;
+	char			*s;
 
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	temp = va_arg(tab->args, unsigned int);
+	s = ft_uitoa(temp);
+	tab->lentot += write(1, s, ft_strlen(s));
+	free(s);
 }

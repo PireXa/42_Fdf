@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/22 16:28:10 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 16:28:13 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
-
-int	valuescount(char *s)
+int	ft_atoi(const char *str)
 {
-	int	i;
-	int	count;
+	int			i;
+	int			n;
+	int			result;
 
-	count = 0;
 	i = 0;
-	while (s[i] != '\0')
+	n = 1;
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
 	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
+		n = -1;
+		i++;
 	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	return (result * n);
 }

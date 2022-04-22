@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/03/07 15:04:29 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/03/08 10:43:14 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "ft_printf.h"
 
-int	valuescount(char *s)
+void	ft_putchar(t_print *tab)
 {
-	int	i;
-	int	count;
+	unsigned char	a;
 
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	a = (unsigned char)(va_arg(tab->args, int));
+	tab->lentot += (write(1, &a, 1));
 }

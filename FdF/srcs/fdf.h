@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 13:02:31 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:38:51 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <ctype.h>
+# include "ft_printf.h"
 
 # define BUFFER_SIZE 10
 # define WIND_H 1080
@@ -124,8 +125,6 @@ char	**ft_split(const char *s, char c);
 
 t_pxls	const_calc(int columns, int lines, t_pxls pxls);
 
-void	qual(t_data img);
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	connector(t_drw crd, t_data img);
@@ -150,8 +149,6 @@ void	increase_z(int key, t_fdf *g);
 
 int		color_reader(char *s);
 
-int		ft_isdigit(int c);
-
 void	up_designer(t_fdf *g);
 
 t_off	offset_init(t_off off);
@@ -161,5 +158,15 @@ t_fdf	grf_initializer(void);
 void	base_mesh(int key, t_fdf *g);
 
 int		ft_printf(const char *str, ...);
+
+int		ft_isdigit(int str);
+
+int		error_check(int ac, char *str);
+
+int		ft_error(int check);
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+int		color_cmp(int a, int b);
 
 #endif

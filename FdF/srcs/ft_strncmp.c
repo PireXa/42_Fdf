@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/02/14 15:38:50 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 17:11:27 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-int	valuescount(char *s)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-	int	count;
+	size_t	i;
 
-	count = 0;
 	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	if (n == 0)
+		return (0);
+	while (i + 1 < n && ((unsigned char)s1[i] == (unsigned char)s2[i]
+			&& ((unsigned char)s1[i]) && ((unsigned char)s2[i])))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

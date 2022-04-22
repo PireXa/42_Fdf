@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 16:02:25 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 11:46:09 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 17:59:04 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ void	lines(int a, int x, int y, t_fdf *g)
 	p = -1;
 	while (a < g->dimen.l)
 	{
-		while (++b < (g->dimen.c - 1))
+		while (++b < g->dimen.c - 1)
 		{
+			if (color_cmp(g->matriz[a][b].clr, g->matriz[a][b + 1].clr))
+				g->img.clr = g->matriz[a][b].clr;
+			else
+				g->img.clr = 0x4876ff;
 			while (++p < g->pxls.bargak)
-				my_mlx_pixel_put(&g->img, x + p, y, g->matriz[a][b].clr);
+				my_mlx_pixel_put(&g->img, x + p, y, g->img.clr);
 			p = -1;
 			x += g->pxls.bargak;
 		}
@@ -64,10 +68,14 @@ void	columns(int a, int x, int y, t_fdf *g)
 	p = -1;
 	while (a < g->dimen.c)
 	{
-		while (++b < (g->dimen.l - 1))
+		while (++b < g->dimen.l - 1)
 		{
+			if (color_cmp(g->matriz[b][a].clr, g->matriz[b + 1][a].clr))
+				g->img.clr = g->matriz[b][a].clr;
+			else
+				g->img.clr = 0x4876ff;
 			while (++p < g->pxls.bargak)
-				my_mlx_pixel_put(&g->img, x, y + p, g->matriz[b][a].clr);
+					my_mlx_pixel_put(&g->img, x, y + p, g->img.clr);
 			p = -1;
 			y += g->pxls.bargak;
 		}

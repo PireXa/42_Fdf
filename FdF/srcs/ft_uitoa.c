@@ -1,33 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:14:44 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/22 16:35:30 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 16:47:07 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-int	valuescount(char *s)
+static int	newstrlen(long c)
 {
 	int	i;
-	int	count;
 
-	count = 0;
 	i = 0;
-	while (s[i] != '\0')
+	if (c == 0)
+		return (1);
+	while (c > 0)
 	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
+		c /= 10;
+		i++;
 	}
-	if (!(ft_isdigit(s[0]) || s[0] == '-'))
-		count--;
-	return (count);
+	return (i);
+}
+
+char	*ft_uitoa(unsigned int c)
+{
+	char	*res;
+	int		n;
+	long	new_c;
+
+	new_c = c;
+	n = newstrlen(new_c);
+	res = malloc(sizeof(char) * n + 1);
+	if (!res)
+		return (NULL);
+	if (new_c == 0)
+		res[0] = '0';
+	res[n] = '\0';
+	while (new_c > 0)
+	{
+		res[n - 1] = new_c % 10 + '0';
+		new_c /= 10;
+		n--;
+	}
+	return (res);
 }
