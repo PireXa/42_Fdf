@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 18:16:01 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:34:07 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@ void	pxl_y_corrector(t_dim dimen, int bargak, t_trd **matriz)
 	while (++s < dimen.l)
 	{
 		while (++t < dimen.c)
-			matriz[s][t].y -= matriz[s][t].z * bargak * 2;
+			matriz[s][t].y -= matriz[s][t].z * bargak * 1.5;
 		t = -1;
 	}
 }
 
-void	calc_mesh2(t_dim dimen, int a, t_trd **matriz, t_pxls pxls)
+void	calc_mesh2(t_dim dimen, int a, t_trd **m, t_pxls pxs)
 {
 	int		b;
 	char	**hold;
 
 	b = -1;
-	hold = ft_split(pxls.map, 32);
+	hold = ft_split(pxs.map, 32);
 	while (++b < dimen.c && hold[b] != NULL)
 	{
-		matriz[a][b].x = pxls.colx;
-		matriz[a][b].y = pxls.liney;
-		matriz[dimen.l - a - 1][b].z = ft_atoi(hold[b]) * pxls.off.z_off;
-		matriz[dimen.l - a - 1][b].clr = color_reader(hold[b]);
-		pxls.colx += pxls.bargak * 2;
-		pxls.liney -= pxls.bargak;
+		m[a][b].x = pxs.colx;
+		m[a][b].y = pxs.liney;
+		m[dimen.l - a - 1][b].z = ft_atoi(hold[b]) * pxs.off.z_off * pxs.off.r;
+		m[dimen.l - a - 1][b].clr = color_reader(hold[b]);
+		pxs.colx += pxs.bargak * 2;
+		pxs.liney -= pxs.bargak;
 	}
 	free (hold);
 }

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valuescount.c                                      :+:      :+:    :+:   */
+/*   initializers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:06:22 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 12:17:55 by fde-albe         ###   ########.fr       */
+/*   Created: 2022/04/22 09:38:41 by fde-albe          #+#    #+#             */
+/*   Updated: 2022/04/22 11:40:43 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-int	valuescount(char *s)
+t_off	offset_init(t_off off)
 {
-	int	i;
-	int	count;
+	off.zoom = 0;
+	off.x_off = 0;
+	off.y_off = 0;
+	off.z_off = 1;
+	off.r = 1;
+	return (off);
+}
 
-	count = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		while (!(ft_isspace(s[i])) && s[i] != '\0')
-			i++;
-		while (ft_isspace(s[i]) && s[i] != '\0')
-			i++;
-		count++;
-	}
-	if (!(ft_isdigit(s[0]) && s[0] == '-'))
-		count--;
-	return (count);
+t_fdf	grf_initializer(void)
+{
+	t_fdf	g;
+
+	g.mlx = mlx_init();
+	g.mlx_win = mlx_new_window(g.mlx, WIND_W, WIND_H, "Fds");
+	g.img.img = mlx_new_image(g.mlx, WIND_W, WIND_H);
+	g.img.addr = mlx_get_data_addr(g.img.img, &g.img.p, &g.img.lgt, &g.img.e);
+	return (g);
 }

@@ -6,18 +6,11 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:38 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 18:33:48 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 12:57:54 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	ft_abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
 
 t_pxls	calc_start_pxls(t_pxls pxls, int h)
 {
@@ -25,7 +18,7 @@ t_pxls	calc_start_pxls(t_pxls pxls, int h)
 	pxls.liney = (WIND_H - 80) + pxls.off.y_off;
 	pxls.holdx = pxls.colx;
 	pxls.holdy = pxls.liney;
-	if(h >= 100)
+	if (h >= 100)
 		pxls.bargak = 2;
 	else if (h >= 40)
 		pxls.bargak = 3;

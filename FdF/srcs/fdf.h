@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 18:17:17 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:02:31 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct init_off {
 	int		x_off;
 	int		y_off;
 	int		z_off;
+	int		r;
 	int		zoom;
 }			t_off;
 
@@ -79,7 +80,7 @@ typedef struct image {
 	t_dim	dimen;
 	t_trd	**matriz;
 	t_pxls	pxls;
-}			t_init_wind;
+}			t_fdf;
 
 typedef struct coor_kingdm {
 	float	s_rei;
@@ -129,30 +130,36 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	connector(t_drw crd, t_data img);
 
-float	slope(float x1, int y1, int x2, int y2);
-
 void	designer(t_dim dimen, t_trd **matriz, t_data img);
 
 void	calc_mesh(t_dim diment, t_trd **matriz, t_pxls pxls);
 
-void	controls(t_init_wind g);
+void	controls(t_fdf g);
 
 int		ft_isspace(int c);
 
-void	move_model(int key, t_init_wind *g);
+void	move_model(int key, t_fdf *g);
 
-void	zoom(int key, t_init_wind *g);
+void	zoom(int key, t_fdf *g);
 
-void	reset_img(t_init_wind *g);
+void	reset_img(t_fdf *g);
 
-void	draw_model(t_init_wind *g);
+void	draw_model(t_fdf *g);
 
-void	increase_z(int key, t_init_wind *g);
+void	increase_z(int key, t_fdf *g);
 
 int		color_reader(char *s);
 
 int		ft_isdigit(int c);
 
-void	up_designer(t_init_wind *g);
+void	up_designer(t_fdf *g);
+
+t_off	offset_init(t_off off);
+
+t_fdf	grf_initializer(void);
+
+void	base_mesh(int key, t_fdf *g);
+
+int		ft_printf(const char *str, ...);
 
 #endif

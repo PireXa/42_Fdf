@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:27:54 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 12:54:43 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:38:33 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	closex(void *param)
 
 int	user_hook(int a, void *param)
 {
-	t_init_wind	*g;
+	t_fdf	*g;
 
-	g = (t_init_wind *)param;
+	g = (t_fdf *)param;
 	if (a == 53)
 	{
 		mlx_destroy_window(g->mlx, g->mlx_win);
@@ -36,10 +36,12 @@ int	user_hook(int a, void *param)
 		increase_z(a, g);
 	else if (a == 32)
 		up_designer(g);
+	else if (a == 11 || a == 45)
+		base_mesh(a, g);
 	return (0);
 }
 
-void	controls(t_init_wind g)
+void	controls(t_fdf g)
 {
 	mlx_hook(g.mlx_win, 2, 0, user_hook, &g);
 	mlx_hook(g.mlx_win, 17, 0, closex, &g);

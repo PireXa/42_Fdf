@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:41:37 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 13:11:56 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:19:16 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	dsg_lines(t_dim dimen, t_trd **m, t_data img, t_drw drw)
 		if (color_cmp(m[drw.a][b].clr, m[drw.a][b + 1].clr))
 			img.clr = m[drw.a][b].clr;
 		else
-			img.clr = 0xFF00FF;
+			img.clr = 0x4876ff;
 		connector(drw, img);
 	}
 }
@@ -52,7 +52,7 @@ void	dsg_columns(t_dim dimen, t_trd **m, t_data img, t_drw drw)
 		if (color_cmp(m[drw.a][b].clr, m[drw.a + 1][b].clr))
 			img.clr = m[drw.a][b].clr;
 		else
-			img.clr = 0xFF00FF;
+			img.clr = 0x4876ff;
 		connector(drw, img);
 	}
 }

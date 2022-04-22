@@ -6,53 +6,43 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:56:27 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/21 18:33:44 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:02:14 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_off	offset_init(t_off off)
+int	ft_error(int check)
 {
-	off.zoom = 0;
-	off.x_off = 0;
-	off.y_off = 0;
-	off.z_off = 1;
-	return (off);
-}
-
-float	slope(float x1, int y1, int x2, int y2)
-{
-	float	ret;
-
-	ret = (y2 - y1) / (x2 - x1);
-	return (ret);
-}
-
-t_init_wind	grf_initializer(void)
-{
-	t_init_wind	g;
-
-	g.mlx = mlx_init();
-	g.mlx_win = mlx_new_window(g.mlx, WIND_W, WIND_H, "Fds");
-	g.img.img = mlx_new_image(g.mlx, WIND_W, WIND_H);
-	g.img.addr = mlx_get_data_addr(g.img.img, &g.img.p, &g.img.lgt, &g.img.e);
-	return (g);
+	if (check == -1)
+	{
+		ft_printf("MAP INVALID\n");
+		ft_printf("Map has lines with different amount of columns\n");
+		return (1);
+	}
+	return (0);
 }
 
 t_dim	dim_definer(char *map)
 {
-	char		*line;
-	int			fd;
-	t_dim		dimen;
+	char	*line;
+	int		fd;
+	int		check;
+	t_dim	dimen;
 
 	dimen.c = 0;
 	dimen.l = 0;
 	fd = open(map, O_RDWR);
 	line = get_next_line(fd);
+	check = valuescount(line);
 	while (line)
 	{
 		dimen.c = valuescount(line);
+		if (dimen.c != check)
+		{
+			dimen.c = -1;
+			return (dimen);
+		}
 		dimen.l++;
 		free(line);
 		line = get_next_line(fd);
@@ -63,8 +53,8 @@ t_dim	dim_definer(char *map)
 
 int	main(int ac, char **av)
 {
-	int			a;
-	t_init_wind	g;
+	int		a;
+	t_fdf	g;
 
 	a = -1;
 	if (ac != 2)
@@ -72,6 +62,8 @@ int	main(int ac, char **av)
 	g = grf_initializer();
 	g.pxls.map = av[1];
 	g.dimen = dim_definer(g.pxls.map);
+	if (ft_error(g.dimen.c))
+		return (0);
 	g.matriz = malloc(sizeof(t_trd *) * g.dimen.l);
 	if (!g.matriz)
 		return (0);
@@ -84,5 +76,4 @@ int	main(int ac, char **av)
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.img.img, 0, 0);
 	controls(g);
 	mlx_loop(g.mlx);
-	free(g.matriz);
 }
