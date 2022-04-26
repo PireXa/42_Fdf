@@ -6,23 +6,20 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:27:54 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 11:38:33 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:37:26 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	closex(void *param)
+int	closex(t_fdf *g)
 {
-	(void)param;
+	mlx_destroy_window(g->mlx, g->mlx_win);
 	exit(0);
 }
 
-int	user_hook(int a, void *param)
+int	user_hook(int a, t_fdf *g)
 {
-	t_fdf	*g;
-
-	g = (t_fdf *)param;
 	if (a == 53)
 	{
 		mlx_destroy_window(g->mlx, g->mlx_win);
@@ -41,8 +38,8 @@ int	user_hook(int a, void *param)
 	return (0);
 }
 
-void	controls(t_fdf g)
+void	controls(t_fdf *g)
 {
-	mlx_hook(g.mlx_win, 2, 0, user_hook, &g);
-	mlx_hook(g.mlx_win, 17, 0, closex, &g);
+	mlx_hook(g->mlx_win, 2, 0, user_hook, g);
+	mlx_hook(g->mlx_win, 17, 0, closex, g);
 }

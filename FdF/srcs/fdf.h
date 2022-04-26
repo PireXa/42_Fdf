@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:09:40 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:38:51 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:44:13 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 
 typedef struct s_data {
 	void	*img;
-	char	*addr;
+	char	*a;
 	int		p;
-	int		lgt;
+	int		l;
 	int		e;
 	int		clr;
 }			t_data;
@@ -133,7 +133,7 @@ void	designer(t_dim dimen, t_trd **matriz, t_data img);
 
 void	calc_mesh(t_dim diment, t_trd **matriz, t_pxls pxls);
 
-void	controls(t_fdf g);
+void	controls(t_fdf *g);
 
 int		ft_isspace(int c);
 
@@ -153,7 +153,7 @@ void	up_designer(t_fdf *g);
 
 t_off	offset_init(t_off off);
 
-t_fdf	grf_initializer(void);
+t_fdf	*grf_initializer(void);
 
 void	base_mesh(int key, t_fdf *g);
 
@@ -161,12 +161,16 @@ int		ft_printf(const char *str, ...);
 
 int		ft_isdigit(int str);
 
-int		error_check(int ac, char *str);
+void	error_check(int ac, char *str);
 
 int		ft_error(int check);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int		color_cmp(int a, int b);
+
+t_dim	dim_definer(char *map);
+
+t_trd	**allocate_matriz(t_dim dimen);
 
 #endif

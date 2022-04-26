@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:05:30 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 09:54:50 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:32:10 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
 	{
-		dst = data->addr + (y * data->lgt + x * (data->p / 8));
+		dst = data->a + (y * data->l + x * (data->p / 8));
 		*(unsigned int *)dst = color;
 	}
 }

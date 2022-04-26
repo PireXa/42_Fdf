@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:45:00 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 10:34:07 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:55:45 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	calc_mesh(t_dim dimen, t_trd **matriz, t_pxls pxls)
 		pxls.liney = pxls.holdy;
 		b = -1;
 	}
+	free(pxls.map);
 	pxl_y_corrector(dimen, pxls.bargak, matriz);
 	close (fd);
 }

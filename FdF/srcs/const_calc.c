@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:10:38 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 12:57:54 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:34:19 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	calc_max_height(char *map)
 		hold = ft_split(line, 32);
 		cnt = height_extra(cnt, hold);
 		free (hold);
+		free (line);
 		line = get_next_line(fd);
 	}
+	free (line);
 	close(fd);
 	return (cnt.b - cnt.d);
 }

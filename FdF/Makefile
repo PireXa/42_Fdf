@@ -6,13 +6,13 @@
 #    By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 16:01:05 by fde-albe          #+#    #+#              #
-#    Updated: 2022/04/22 17:11:02 by fde-albe         ###   ########.fr        #
+#    Updated: 2022/04/25 12:17:49 by fde-albe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= controls.c calc_mesh.c connector.c designer.c \
-		  const_calc.c fdf.c get_next_line_utils.c \
-		  get_next_line.c valuescount.c ft_isspace.c \
+		  const_calc.c main.c get_next_line_utils_bonus.c \
+		  get_next_line_bonus.c valuescount.c ft_isspace.c \
 		  ctrl_handlers.c ctrl_handlers2.c calc_color.c \
 		  initializers.c ft_atoi.c ft_split.c ft_bzero.c \
 		  ft_memset.c ft_calloc.c ft_itoa.c ft_printf.c \

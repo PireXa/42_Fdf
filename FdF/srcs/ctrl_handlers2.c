@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 16:02:25 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 17:59:04 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:22:27 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	columns(int a, int x, int y, t_fdf *g)
 			else
 				g->img.clr = 0x4876ff;
 			while (++p < g->pxls.bargak)
-					my_mlx_pixel_put(&g->img, x, y + p, g->img.clr);
+				my_mlx_pixel_put(&g->img, x, y + p, g->img.clr);
 			p = -1;
 			y += g->pxls.bargak;
 		}

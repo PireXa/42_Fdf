@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:24:06 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/22 11:39:35 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:32:30 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	reset_img(t_fdf *g)
 {
-	ft_bzero(g->img.addr, WIND_H * WIND_W * (g->img.p / 8));
+	ft_bzero(g->img.a, WIND_H * WIND_W * (g->img.p / 8));
 }
 
 void	draw_model(t_fdf *g)
