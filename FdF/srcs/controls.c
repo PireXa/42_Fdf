@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:27:54 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/26 10:37:26 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/27 09:53:06 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 int	closex(t_fdf *g)
 {
-	mlx_destroy_window(g->mlx, g->mlx_win);
+	(void)g;
 	exit(0);
 }
 
 int	user_hook(int a, t_fdf *g)
 {
 	if (a == 53)
-	{
-		mlx_destroy_window(g->mlx, g->mlx_win);
 		exit(0);
-	}
 	if (a == 123 || a == 124 || a == 125 || a == 126)
 		move_model(a, g);
 	else if (a == 6 || a == 7)

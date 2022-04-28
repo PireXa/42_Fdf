@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:24:06 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/26 10:32:30 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/27 09:48:54 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	up_view(t_fdf *g)
 void	zoom(int key, t_fdf *g)
 {
 	reset_img(g);
-	printf("");
 	if (key == 6)
 	{
 		if (g->pxls.bargak < 100)

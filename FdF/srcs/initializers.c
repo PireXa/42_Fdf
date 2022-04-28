@@ -6,7 +6,7 @@
 /*   By: fde-albe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:38:41 by fde-albe          #+#    #+#             */
-/*   Updated: 2022/04/26 10:42:46 by fde-albe         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:15:17 by fde-albe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_fdf	*grf_initializer(void)
 	t_fdf	*g;
 
 	g = (t_fdf *)malloc(sizeof(t_fdf));
+	if (!g)
+		exit(0);
 	g->mlx = mlx_init();
 	g->mlx_win = mlx_new_window(g->mlx, WIND_W, WIND_H, "Fds");
 	g->img.img = mlx_new_image(g->mlx, WIND_W, WIND_H);
